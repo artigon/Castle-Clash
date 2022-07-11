@@ -13,9 +13,11 @@ public class CannonMec : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+       
+        if (target != null)
+            agent.SetDestination(target.transform.position);
+        agent.isStopped = true;
         StartCoroutine(Idle());
-        agent.enabled = true;
-
     }
 
     // Update is called once per frame
@@ -23,9 +25,6 @@ public class CannonMec : MonoBehaviour
     {
         if(agent.enabled)
         {
-            animator.SetInteger("State", 1);
-            agent.SetDestination(target.transform.position);
-
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 agent.enabled = false;
@@ -35,13 +34,17 @@ public class CannonMec : MonoBehaviour
     }
     public IEnumerator Idle()
     {
-        agent.enabled = false;
         if (animator.GetInteger("State") != 0)
             animator.SetInteger("State", 0);
 
 
         yield return new WaitForSecondsRealtime(2);
-
-        
+        if (agent.hasPath)
+        {
+            animator.SetInteger("State", 1);
+            agent.isStopped = false;
+            agent.ResetPath();
+            agent.destination = target.transform.position;
+        }
     }
 }
