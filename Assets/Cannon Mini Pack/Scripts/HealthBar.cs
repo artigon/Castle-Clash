@@ -22,17 +22,27 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
 
-        //healthbarUI.transform.position = this.transform.position + transform.up * 0.8f;
+        healthbarUI.transform.position = this.transform.position;
         slider.value = CalculateHealth();
         if (health < maxHealth)
             healthbarUI.SetActive(true);
 
         if (health <= 0)
-            Destroy(gameObject);
+        {
+            StartCoroutine(Dead());           
+        }
 
         if (health > maxHealth)
             health = maxHealth;
-        
+
+        IEnumerator Dead()
+        {
+            yield return new WaitForSeconds(0.5f);
+            healthbarUI.SetActive(false);
+            Destroy(gameObject);
+        }
+
+
     }
     float CalculateHealth()
     {
