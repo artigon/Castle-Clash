@@ -19,7 +19,7 @@ public class FortWallsWarning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FrontGate.activeSelf == false&&FrontWarning==0)
+        if ((FrontGate.activeSelf == false&&FrontWarning==0 ) || Input.GetKeyDown(KeyCode.E))
         {
             FrontWarning += 1;
             WarningText.gameObject.SetActive(true);
