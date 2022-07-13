@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
+    public float checkRangeForAttack;
+
     public GameObject walkPointFromUser;
     public GameObject enemy;
     public string enemyTag;
@@ -31,6 +33,7 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         walkPoint = walkPointFromUser.transform.position;
@@ -39,7 +42,25 @@ public class npcMovmentMec : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+
+        if (enemyInSightRange)
+        {
+            attackRange = Vector3.Distance(enemy.transform.position, this.transform.position);
+            if (attackRange <= checkRangeForAttack)
+                enemyInAttackRange = true;
+            else
+                enemyInAttackRange = false;
+        }
+        //if (enemyInSightRange && ((transform.position.x - enemy.transform.position.x <= 1f &&
+        //    transform.position.z - enemy.transform.position.z <= 1f) || (transform.position.x + enemy.transform.position.x <= 1f &&
+        //    transform.position.z + enemy.transform.position.z <= 1f)))
+        //    enemyInAttackRange = true;
+
+        //if (Physics.CheckSphere(this.gameObject.transform.position, 0.5f, whatIsEnemy))
+        //    enemyInAttackRange = true;
+
+
         //check for sight and attack range
         if (!enemyInSightRange && !enemyInAttackRange)
             walkingTowalkPoint();
@@ -49,37 +70,51 @@ public class npcMovmentMec : MonoBehaviour
             attackEnemy();
     }
 
-    private void walkingTowalkPoint()
+    private void OnTriggerEnter(Collider other)
+    {
+
+        //parent.agent.enabled = false;
+        if (other.gameObject.tag == enemyTag)
+        {
+
+            StartCoroutine(goToEnemy(other.gameObject));
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == enemyTag)
+        {
+            agent.SetDestination(walkPoint);
+        }
+    }
+
+    IEnumerator goToEnemy(GameObject bjc)
+    {
+
+        yield return new WaitForSeconds(0.01f);
+        enemyInSightRange = true;
+        enemy = bjc;
+    }
+
+        private void walkingTowalkPoint()
     {
         agent.SetDestination(walkPoint);
-
-
-        //if (!walkPointSet)
-        //{
-        //    //make idel
-        //    agent.enabled = false;
-        //}
-        //else
-        //{
-        //    agent.SetDestination(walkPoint);
-        //}
-
-
-        //if (transform.position.x - walkPoint.x <= 1f &&
-        //    transform.position.z - walkPoint.z <= 1f)
-        //    walkPointSet = false;
 
     }
 
     private void chaseEnemy()
     {
         agent.SetDestination(enemy.transform.position);
-        //walkPointSet = false;
 
     }
 
     private void attackEnemy()
     {
+        agent.SetDestination(this.transform.position);
+        transform.LookAt(enemy.transform);
+        print(this.gameObject.tag + " attacking\n");
 
         //agent.SetDestination(transform.position);
 
