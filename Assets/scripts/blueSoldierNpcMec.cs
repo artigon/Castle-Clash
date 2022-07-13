@@ -32,7 +32,8 @@ public class blueSoldierNpcMec : MonoBehaviour
 
         if (enemyTarget != null)
         {
-            if (this.transform.position.x - enemyTarget.transform.position.x <= 0.05f && this.transform.position.z - enemyTarget.transform.position.z <= 0.05f)
+            if (this.transform.position.x - enemyTarget.transform.position.x <= 0.05f &&
+                this.transform.position.z - enemyTarget.transform.position.z <= 0.05f)
             {
 
             }
