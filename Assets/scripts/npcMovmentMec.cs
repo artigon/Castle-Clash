@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
+    public bool canAttack = true;
     public int npcDamegePoints;
     public GameObject walkPointFromUser;
     public GameObject enemy;
@@ -45,13 +46,17 @@ public class npcMovmentMec : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(walkPoint, this.transform.position) <= 10f)
+            walkPointSet = false;
+        if (!canAttack)
+            agent.SetDestination(this.transform.position);
         if (Input.GetKeyDown(KeyCode.Space))
             walkPointSet = true;
 
         enemy = GameObject.FindGameObjectWithTag(enemyTag);
 
-        //if (enemy == null)
-        //    walkingTowalkPoint();
+        if (enemy == null)
+            walkingTowalkPoint();
 
         enemyInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemy);
 
@@ -107,17 +112,16 @@ public class npcMovmentMec : MonoBehaviour
 
     private void walkingTowalkPoint()
     {
+        enemyInAttackRange = false;
         if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
-            //animator.SetInteger("state", 1);
             StartCoroutine(changeState(1));
 
         }
         else
         {
             agent.SetDestination(this.transform.position);
-            //animator.SetInteger("state", 0);
             StartCoroutine(changeState(0));
 
         }
@@ -133,16 +137,19 @@ public class npcMovmentMec : MonoBehaviour
 
     private void attackEnemy()
     {
-        StartCoroutine(changeState(2));
-        agent.SetDestination(this.transform.position);
-        transform.LookAt(enemy.transform);
-        print(this.gameObject.tag + " attacking\n");
-        enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
-
-        if (!alreadyAttaked)
+        if (canAttack)
         {
-            alreadyAttaked = true;
-            Invoke(nameof(resetAttack), timeBetweenAttacks);
+            StartCoroutine(changeState(2));
+            agent.SetDestination(this.transform.position);
+            transform.LookAt(enemy.transform);
+            print(this.gameObject.tag + " attacking\n");
+            enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
+
+            if (!alreadyAttaked)
+            {
+                alreadyAttaked = true;
+                Invoke(nameof(resetAttack), timeBetweenAttacks);
+            }
         }
 
     }

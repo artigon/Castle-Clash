@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72e3fc9cbc245940bb833c96fb3046e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 1
   npcDamegePoints: 2
   walkPointFromUser: {fileID: 0}
   enemy: {fileID: 0}
@@ -494,6 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
+  movmentMec: {fileID: 1144445548}
 --- !u!95 &6455835791876568616
 Animator:
   serializedVersion: 3
