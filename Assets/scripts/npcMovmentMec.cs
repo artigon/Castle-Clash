@@ -32,7 +32,8 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        animator.SetInteger("state", 0);
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         walkPoint = walkPointFromUser.transform.position;
@@ -97,20 +98,29 @@ public class npcMovmentMec : MonoBehaviour
         enemy = bjc;
     }
 
-        private void walkingTowalkPoint()
+    private void walkingTowalkPoint()
     {
-        agent.SetDestination(walkPoint);
-
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkPoint);
+            animator.SetInteger("state", 1);
+        }
+        else
+        {
+            agent.SetDestination(this.transform.position);
+            animator.SetInteger("state", 0);
+        }
     }
 
     private void chaseEnemy()
     {
         agent.SetDestination(enemy.transform.position);
-
+        animator.SetInteger("state", 1);
     }
 
     private void attackEnemy()
     {
+        animator.SetInteger("state", 2);
         agent.SetDestination(this.transform.position);
         transform.LookAt(enemy.transform);
         print(this.gameObject.tag + " attacking\n");
