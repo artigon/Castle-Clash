@@ -6,12 +6,10 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
-    public float checkRangeForAttack;
-
     public GameObject walkPointFromUser;
     public GameObject enemy;
     public string enemyTag;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
     private Animator animator;
     //public Transform enemy;
     public LayerMask whatIsGround, whatIsEnemy;
@@ -27,6 +25,7 @@ public class npcMovmentMec : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
+    public float checkRangeForAttack;
     public bool enemyInSightRange, enemyInAttackRange;
 
 
@@ -42,7 +41,13 @@ public class npcMovmentMec : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        enemy = GameObject.FindGameObjectWithTag(enemyTag);
+
+        //if (enemy == null)
+        //    walkingTowalkPoint();
+
+        enemyInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemy);
 
         if (enemyInSightRange)
         {
@@ -52,13 +57,6 @@ public class npcMovmentMec : MonoBehaviour
             else
                 enemyInAttackRange = false;
         }
-        //if (enemyInSightRange && ((transform.position.x - enemy.transform.position.x <= 1f &&
-        //    transform.position.z - enemy.transform.position.z <= 1f) || (transform.position.x + enemy.transform.position.x <= 1f &&
-        //    transform.position.z + enemy.transform.position.z <= 1f)))
-        //    enemyInAttackRange = true;
-
-        //if (Physics.CheckSphere(this.gameObject.transform.position, 0.5f, whatIsEnemy))
-        //    enemyInAttackRange = true;
 
 
         //check for sight and attack range
@@ -70,25 +68,26 @@ public class npcMovmentMec : MonoBehaviour
             attackEnemy();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    //DO NOT DELETE THIS COMMENT CODE, AFRAID WILL BREAK!
+    //private void OnTriggerEnter(Collider other)
+    //{
 
-        //parent.agent.enabled = false;
-        if (other.gameObject.tag == enemyTag)
-        {
+    //    //parent.agent.enabled = false;
+    //    if (other.gameObject.tag == enemyTag)
+    //    {
 
-            StartCoroutine(goToEnemy(other.gameObject));
+    //        StartCoroutine(goToEnemy(other.gameObject));
 
-        }
-    }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == enemyTag)
-        {
-            agent.SetDestination(walkPoint);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == enemyTag)
+    //    {
+    //        agent.SetDestination(walkPoint);
+    //    }
+    //}
 
     IEnumerator goToEnemy(GameObject bjc)
     {
@@ -116,15 +115,11 @@ public class npcMovmentMec : MonoBehaviour
         transform.LookAt(enemy.transform);
         print(this.gameObject.tag + " attacking\n");
 
-        //agent.SetDestination(transform.position);
-
-        //transform.LookAt(enemy);
-
-        //if (!alreadyAttaked)
-        //{
-        //    alreadyAttaked = true;
-        //    Invoke(nameof(resetAttack), timeBetweenAttacks);
-        //}
+        if (!alreadyAttaked)
+        {
+            alreadyAttaked = true;
+            Invoke(nameof(resetAttack), timeBetweenAttacks);
+        }
 
     }
 
