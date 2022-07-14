@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
+    public int npcDamegePoints;
     public GameObject walkPointFromUser;
     public GameObject enemy;
     public string enemyTag;
@@ -33,16 +34,20 @@ public class npcMovmentMec : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetInteger("state", 0);
+        //animator.SetInteger("state", 0);
+        //animator.SetInteger("state", 2);
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         walkPoint = walkPointFromUser.transform.position;
-        walkPointSet = true;
+        walkPointSet = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            walkPointSet = true;
+
         enemy = GameObject.FindGameObjectWithTag(enemyTag);
 
         //if (enemy == null)
@@ -67,6 +72,8 @@ public class npcMovmentMec : MonoBehaviour
             chaseEnemy();
         if (enemyInSightRange && enemyInAttackRange)
             attackEnemy();
+
+
     }
 
     //DO NOT DELETE THIS COMMENT CODE, AFRAID WILL BREAK!
@@ -103,27 +110,34 @@ public class npcMovmentMec : MonoBehaviour
         if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
-            animator.SetInteger("state", 1);
+            //animator.SetInteger("state", 1);
+            StartCoroutine(changeState(1));
+
         }
         else
         {
             agent.SetDestination(this.transform.position);
-            animator.SetInteger("state", 0);
+            //animator.SetInteger("state", 0);
+            StartCoroutine(changeState(0));
+
         }
     }
 
     private void chaseEnemy()
     {
         agent.SetDestination(enemy.transform.position);
-        animator.SetInteger("state", 1);
+        //animator.SetInteger("state", 1);
+        StartCoroutine(changeState(2));
+
     }
 
     private void attackEnemy()
     {
-        animator.SetInteger("state", 2);
+        StartCoroutine(changeState(2));
         agent.SetDestination(this.transform.position);
         transform.LookAt(enemy.transform);
         print(this.gameObject.tag + " attacking\n");
+        enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
         if (!alreadyAttaked)
         {
@@ -136,5 +150,33 @@ public class npcMovmentMec : MonoBehaviour
     private void resetAttack()
     {
         alreadyAttaked = false;
+    }
+
+    IEnumerator changeState(int menu)
+    {
+        yield return new WaitForSeconds(0.01f);
+        switch(menu)
+        {
+            case 0:
+                {
+                    animator.SetInteger("state", 0);
+                    break;
+                }
+            case 1:
+                {
+                    animator.SetInteger("state", 1);
+                    break;
+                }
+            case 2:
+                {
+                    animator.SetInteger("state", 2);
+                    break;
+                }
+            case 3:
+                {
+                    animator.SetInteger("state", 3);
+                    break;
+                }
+        }
     }
 }
