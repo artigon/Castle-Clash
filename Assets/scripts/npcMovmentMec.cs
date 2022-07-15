@@ -131,7 +131,7 @@ public class npcMovmentMec : MonoBehaviour
     {
         agent.SetDestination(enemy.transform.position);
         //animator.SetInteger("state", 1);
-        StartCoroutine(changeState(2));
+        //StartCoroutine(changeState(2));
 
     }
 
