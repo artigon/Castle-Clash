@@ -166,21 +166,25 @@ public class npcMovmentMec : MonoBehaviour
         {
             case 0:
                 {
+                    //idle
                     animator.SetInteger("state", 0);
                     break;
                 }
             case 1:
                 {
+                    //running
                     animator.SetInteger("state", 1);
                     break;
                 }
             case 2:
                 {
+                    //attacking
                     animator.SetInteger("state", 2);
                     break;
                 }
             case 3:
                 {
+                    //death
                     animator.SetInteger("state", 3);
                     break;
                 }
