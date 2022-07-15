@@ -51,7 +51,12 @@ public class WallHealth : HealthBar
     IEnumerator setWall(GameObject newWall)
     {
         yield return new WaitForSeconds(0.5f);
-        GameObject temp = Instantiate(newWall, wall.transform.position, wall.transform.rotation);
+        GameObject temp;
+        Vector3 add = new Vector3(3f, 13f, 0);
+        if (newWall == rubble)
+            temp = Instantiate(newWall, wall.transform.position, wall.transform.rotation);
+        else
+            temp = Instantiate(newWall, wall.transform.position, wall.transform.rotation);
         Destroy(wall);
         wall = temp;
     }
