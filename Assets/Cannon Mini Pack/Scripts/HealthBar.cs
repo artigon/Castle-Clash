@@ -8,24 +8,30 @@ public class HealthBar : MonoBehaviour
     public float health;
     public float maxHealth;
     public GameObject healthbarUI;
-    public Slider slider;
+    private Slider slider;
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        healthbarUI = Instantiate(healthbarUI, transform.position, transform.rotation);
+
+        slider = healthbarUI.transform.Find("Slider").gameObject.GetComponent<Slider>();
         slider.maxValue = 1.0f;
         slider.value = CalculateHealth();
-        healthbarUI.transform.position = this.transform.position;
+        healthbarUI.transform.position = transform.position;
     }
-
     // Update is called once per frame
     void Update()
     {
 
-        healthbarUI.transform.position = this.transform.position;
+        healthbarUI.transform.position = transform.position;
         slider.value = CalculateHealth();
         if (health < maxHealth)
+        {
             healthbarUI.SetActive(true);
+        }
+        else
+            healthbarUI.SetActive(false);
 
         if (health <= 0)
         {
@@ -44,7 +50,11 @@ public class HealthBar : MonoBehaviour
 
 
     }
-    float CalculateHealth()
+    public void setHealth(float hp)
+    {
+        health = hp;
+    }
+    public float CalculateHealth()
     {
         return (health / maxHealth);
     }
