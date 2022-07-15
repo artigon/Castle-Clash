@@ -85,14 +85,14 @@ public class RTSCameraController : MonoBehaviour {
                 panMovement += Vector3.right * panSpeed * Time.deltaTime;
                 //pos.x += panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                panMovement += Vector3.up * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                panMovement += Vector3.down * panSpeed * Time.deltaTime;
-            }
+            //if (Input.GetKey(KeyCode.Q))
+            //{
+              //  panMovement += Vector3.up * panSpeed * Time.deltaTime;
+            //}
+            //if (Input.GetKey(KeyCode.E))
+            //{
+              //  panMovement += Vector3.down * panSpeed * Time.deltaTime;
+            //}
 
             if(RTSMode) transform.Translate(panMovement, Space.World);
             else if(FlyCameraMode) transform.Translate(panMovement, Space.Self);
@@ -130,7 +130,7 @@ public class RTSCameraController : MonoBehaviour {
         if (rotationEnabled)
         {
             // Mouse Rotation
-            if (Input.GetMouseButton(0))
+            if (Input.GetKey(KeyCode.Q))
             {
                 rotationActive = true;
                 Vector3 mouseDelta;
@@ -154,7 +154,7 @@ public class RTSCameraController : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(rotation);
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetKeyUp(KeyCode.Q))
             {
                 rotationActive = false;
                 if (RTSMode) transform.rotation = Quaternion.Slerp(transform.rotation, initialRot, 0.5f * Time.time);
