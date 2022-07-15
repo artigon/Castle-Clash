@@ -1330,7 +1330,6 @@ GameObject:
   - component: {fileID: 5726545217731313493}
   - component: {fileID: 5726545217730320023}
   - component: {fileID: 5726545217734474031}
-  - component: {fileID: -676408471815654330}
   m_Layer: 0
   m_Name: Wall_d_ii (ruined)
   m_TagString: Untagged
@@ -1417,23 +1416,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 660bf35df9ae20f4a8ff170975e03cf1, type: 3}
---- !u!114 &-676408471815654330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5726545217732380347}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d264f706d1307a649920593e9dce109d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 30
-  maxHealth: 100
-  healthbarUI: {fileID: 558794649143844365, guid: a847f8a605c811f48b3b088da5b9b9fa, type: 3}
-  rubble: {fileID: 155776, guid: 84f1c2dec1d7fe24dab82968d3a1dacb, type: 3}
-  ruinedState: {fileID: 5726545217732380347}
 --- !u!1 &5997185037364397505
 GameObject:
   m_ObjectHideFlags: 0

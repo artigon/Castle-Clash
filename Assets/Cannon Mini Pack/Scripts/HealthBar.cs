@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public GameObject healthbarUI;
     private Slider slider;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         health = maxHealth;
         healthbarUI = Instantiate(healthbarUI, transform.position, transform.rotation);
@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
         healthbarUI.transform.position = transform.position;
     }
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
 
         healthbarUI.transform.position = transform.position;
@@ -57,5 +57,13 @@ public class HealthBar : MonoBehaviour
     public float CalculateHealth()
     {
         return (health / maxHealth);
+    }
+    public Slider getSlider()
+    {
+        return slider;
+    }
+    public void setSlider(Slider s)
+    {
+        slider = s;
     }
 }
