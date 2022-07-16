@@ -36,7 +36,10 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if (isCanone)
+            animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        else
+            animator = GetComponent<Animator>();
         //animator.SetInteger("state", 0);
         //animator.SetInteger("state", 2);
         agent = GetComponent<NavMeshAgent>();
@@ -146,7 +149,7 @@ public class npcMovmentMec : MonoBehaviour
             transform.LookAt(enemy.transform);
             print(this.gameObject.tag + " attacking\n");
             if (isCanone)
-                fireCannonScript.canoneFire();
+                Invoke(fireCannonScript.canoneFire(),0.3f);
             enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
             if (!alreadyAttaked)

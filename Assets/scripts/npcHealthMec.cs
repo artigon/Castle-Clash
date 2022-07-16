@@ -12,7 +12,10 @@ public class npcHealthMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if (isCanon)
+            animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        else
+            animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

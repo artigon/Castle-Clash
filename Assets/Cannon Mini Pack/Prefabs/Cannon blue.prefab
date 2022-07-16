@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: -0.078459024, y: 0, z: 0, w: 0.99691737}
   m_LocalPosition: {x: -0, y: 0.7360104, z: -0.03448654}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3579025592176597972}
   m_Father: {fileID: 4501404751446666}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -9, y: 0, z: 0}
@@ -93,9 +94,6 @@ GameObject:
   - component: {fileID: 33981116531956078}
   - component: {fileID: 23447744355308034}
   - component: {fileID: 95440420132779354}
-  - component: {fileID: -6661427409686248196}
-  - component: {fileID: 6349010183376314200}
-  - component: {fileID: 5859161584854483602}
   m_Layer: 7
   m_Name: Cannon blue
   m_TagString: Blue
@@ -191,70 +189,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-6661427409686248196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638347602806178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75494e8678456a4bbfcd61bf504cc1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cannon: {fileID: 0}
-  shot: {fileID: 0}
---- !u!114 &6349010183376314200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638347602806178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72e3fc9cbc245940bb833c96fb3046e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireCannonScript: {fileID: 0}
-  isCanone: 1
-  canAttack: 1
-  npcDamegePoints: 5
-  walkPointFromUser: {fileID: 0}
-  enemy: {fileID: 0}
-  enemyTag: Red
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 64
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 1
-  walkPointRange: 0
-  timeBetweenAttacks: 10
-  sightRange: 320
-  attackRange: 0
-  checkRangeForAttack: 300
-  enemyInSightRange: 0
-  enemyInAttackRange: 0
---- !u!114 &5859161584854483602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638347602806178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f235f424d706767488bd4833cf308ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCanon: 0
-  canonDeath: {fileID: 3906232124652892466}
-  health: 20
-  movmentMec: {fileID: 6349010183376314200}
 --- !u!1 &1730143908497386
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +480,51 @@ MonoBehaviour:
   startCHeck: 0
   flame: {fileID: 3295332671596534022}
   explotion: {fileID: 4513862518809043844}
+--- !u!1 &2272363423803813946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3579025592176597972}
+  - component: {fileID: 3031399010849004600}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3579025592176597972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2272363423803813946}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0.000000044136463, y: 0.014000058, z: 1.2530003}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_Children: []
+  m_Father: {fileID: 4214672131642104}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &3031399010849004600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2272363423803813946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75494e8678456a4bbfcd61bf504cc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  speed: 4
 --- !u!1001 &1046858963696237487
 PrefabInstance:
   m_ObjectHideFlags: 0
