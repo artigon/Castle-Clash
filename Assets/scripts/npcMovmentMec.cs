@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
+    public FireCannon fireCannonScript;
+    public bool isCanone;
     public bool canAttack = true;
     public int npcDamegePoints;
     public GameObject walkPointFromUser;
@@ -143,6 +145,8 @@ public class npcMovmentMec : MonoBehaviour
             agent.SetDestination(this.transform.position);
             transform.LookAt(enemy.transform);
             print(this.gameObject.tag + " attacking\n");
+            if (isCanone)
+                fireCannonScript.canoneFire();
             enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
             if (!alreadyAttaked)

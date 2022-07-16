@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class npcHealthMec : MonoBehaviour
 {
+    public bool isCanon;
+    public canonDeathAnimeMEc canonDeath;
     public int health;
     private Animator animator;
     public npcMovmentMec movmentMec;
@@ -31,7 +33,10 @@ public class npcHealthMec : MonoBehaviour
     IEnumerator died()
     {
         movmentMec.canAttack = false;
-        animator.SetInteger("state", 3);
+        if (isCanon)
+            canonDeath.startCHeck = true;
+        else
+            animator.SetInteger("state", 3);
         yield return new WaitForSeconds(4);
         this.gameObject.SetActive(false);
     }
