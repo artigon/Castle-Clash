@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3505945369898486125}
   - component: {fileID: 4822398412134927500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BarrelLuncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964924110922215356}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a75494e8678456a4bbfcd61bf504cc1d, type: 3}
   m_Name: 
@@ -58,9 +58,9 @@ GameObject:
   - component: {fileID: 7146921372326193227}
   - component: {fileID: 2263445774272311140}
   - component: {fileID: 1612236946225616116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedCannonP
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 7392167869406527332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 9138114886983008605}
   m_Father: {fileID: 0}
@@ -140,7 +140,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -159,9 +159,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3048002806750127732}
     m_Modifications:
+    - target: {fileID: 499969606023824306, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 767494744897694977, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3342569674990489051, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
       propertyPath: m_Name
       value: Cannon red
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342569674990489051, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201831149620887041, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537342880426625992, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6197038740964013066, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
       propertyPath: m_RootOrder
@@ -218,6 +238,26 @@ PrefabInstance:
     - target: {fileID: 6197038740964013066, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993864780187928089, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037106632983251460, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056601142080993557, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8097753495745464070, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849662433730054269, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94b05f9d2e770504a91a9bea27a66f6c, type: 3}
