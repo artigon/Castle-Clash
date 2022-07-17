@@ -12,11 +12,6 @@ public class FireCannon : MonoBehaviour
     public Animator animator;
     public Rigidbody projectile;
     public float speed = 4;
-    void Start()
-    {
-        canoneFire();
-        
-    }
     // Update is called once per frame
     void Update()
     { 
@@ -28,12 +23,14 @@ public class FireCannon : MonoBehaviour
         }
     }
 
-    public void canoneFire()
+    public IEnumerator canoneFire()
     {
         if (animator.GetNextAnimatorStateInfo(0).IsName("AttackingCannon"))
-        { 
+        {
+            yield return new WaitForSeconds(1f);
             Rigidbody p = Instantiate(projectile, transform.position, transform.rotation);
             p.velocity = transform.forward * speed;
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

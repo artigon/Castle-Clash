@@ -149,7 +149,7 @@ public class npcMovmentMec : MonoBehaviour
             transform.LookAt(enemy.transform);
             print(this.gameObject.tag + " attacking\n");
             if (isCanone)
-                Invoke(fireCannonScript.canoneFire(),0.3f);
+                StartCoroutine(fireCannonScript.canoneFire());
             enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
             if (!alreadyAttaked)
