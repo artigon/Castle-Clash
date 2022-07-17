@@ -1,67 +1,68 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
-//public class FortWallsWarning : MonoBehaviour
-//{
-//    public GameObject FrontGate;
-//    public GameObject leftwall;
-//    public GameObject RightWall;
-//    public GameObject BackWall;
-//    public Text WarningText;
-//    private int FrontWarning = 0, LeftWarning = 0, BackWarning = 0, RightWarning = 0;
-//    // Start is called before the first frame update
-//    void Start()
-//    {
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+public class FortWallsWarning : MonoBehaviour
+{
+    public Text warningText;
+    private bool frontWarning = false;
+    private bool leftWarning = false;
+    private bool backWarning = false;
+    private bool rightWarning = false;
+    // start is called before the first frame update
+    void Start()
+    {
 
-//    }
+    }
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        if ((FrontGate.activeSelf == false && FrontWarning == 0) || Input.GetKeyDown(KeyCode.E))
-//        {
-//            FrontWarning += 1;
-//            WarningText.gameObject.SetActive(true);
-//            WarningText.text = "Warning an enemy has breach our front gates!";
-//            StartCoroutine(CloseText());
+    // update is called once per frame
+ 
+    public void setWarning(string walls)
+    {
+        switch (walls)
+        {
+            case "front":
+                {
+                    if (!frontWarning)
+                    {
+                        frontWarning = true;
+                        warningText.gameObject.SetActive(true);
+                        warningText.text = "warning an enemy has breach our front gates!";
+                        StartCoroutine(closetext());
+                    }
+                }
+                break;
+            case "left":
+                {
+                    if (!leftWarning)
+                    {
+                        leftWarning = true;
+                        warningText.gameObject.SetActive(true);
+                        warningText.text = "to arms! an enemy has breach our left walls!";
+                        StartCoroutine(closetext());
+                    }
+                }
+                break;
+            case "right":
+                {
+                    if(!rightWarning)
+                    {
+                        rightWarning = true;
+                        warningText.gameObject.SetActive(true);
+                        warningText.text = "to arms! an enemy has breach our right walls!";
+                        StartCoroutine(closetext());
+                    }
+                }
+                break;
+            default: break;
+        }
+    }
+    IEnumerator closetext()
+    {
+        yield return new WaitForSeconds(5);
+        warningText.gameObject.SetActive(false);
 
-//        }
-
-//        if (BackWall.activeSelf == false && BackWarning == 0)
-//        {
-//            BackWarning = +1;
-//            WarningText.gameObject.SetActive(true);
-//            WarningText.text = "Warning!! the foul enemies have breach our back walls!";
-//            StartCoroutine(CloseText());
-
-//        }
-//        if (leftwall.activeSelf == false && LeftWarning == 0)
-//        {
-//            LeftWarning += 1;
-//            WarningText.gameObject.SetActive(true);
-//            WarningText.text = "To arms! an enemy has breach our Left walls!";
-//            StartCoroutine(CloseText());
-
-//        }
-//        if (RightWall.activeSelf == false && RightWarning == 0)
-//        {
-//            RightWarning += 1;
-//            WarningText.gameObject.SetActive(true);
-//            WarningText.text = "To arms! an enemy has breach our Right walls!";
-//            StartCoroutine(CloseText());
-
-//        }
 
 
-
-//    }
-//    IEnumerator CloseText()
-//    {
-//        yield return new WaitForSeconds(5);
-//        WarningText.gameObject.SetActive(false);
-
-
-
-//    }
-//}
+    }
+}
