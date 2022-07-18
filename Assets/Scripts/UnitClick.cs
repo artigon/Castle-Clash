@@ -46,6 +46,13 @@ public class UnitClick : MonoBehaviour
 
                 }
             }
+            else
+            {
+                if (!Input.GetKey(KeyCode.LeftShift))
+                {
+                    UnitSelections.Instance.Deselectall();
+                }
+            }
         }
         else if (Input.GetMouseButtonDown(1))
         //else if (Input.GetMouseButtonDown(0) &&
@@ -60,12 +67,6 @@ public class UnitClick : MonoBehaviour
                 clickMarker.transform.position = hit.point;
             }
         }
-        else
-        {
-            if (!Input.GetKey(KeyCode.LeftShift))
-            {
-                UnitSelections.Instance.Deselectall();
-            }
-        }
+        
     }
 }
