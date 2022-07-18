@@ -5,6 +5,10 @@ using UnityEngine;
 public class UnitClick : MonoBehaviour
 {
     private Camera mycam;
+    public LayerMask redMask;
+    public LayerMask blueMask;
+    public bool redSelected;
+    public bool blueSelected;
     public LayerMask clickable;
     public LayerMask ground;
 
@@ -13,6 +17,10 @@ public class UnitClick : MonoBehaviour
     {
         mycam = Camera.main;
 
+        if (redSelected)
+            clickable = redMask;
+        else if (blueSelected)
+            clickable = blueMask;
     }
 
     // Update is called once per frame

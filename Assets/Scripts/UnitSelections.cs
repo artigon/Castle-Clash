@@ -57,8 +57,8 @@ public class UnitSelections : MonoBehaviour
         //foreach (var unit in SelectedList)
         //{
         //    unit.transform.GetChild(0).gameObject.SetActive(false);
-       // }
-        //SelectedList.Clear();
+        // }
+        SelectedList.Clear();
     }
 
     public void Deselect(GameObject unitToDESLECT)
