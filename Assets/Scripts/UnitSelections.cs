@@ -58,11 +58,20 @@ public class UnitSelections : MonoBehaviour
         //{
         //    unit.transform.GetChild(0).gameObject.SetActive(false);
         // }
-        SelectedList.Clear();
+        //SelectedList.Clear();
     }
 
     public void Deselect(GameObject unitToDESLECT)
     {
 
+    }
+
+    public void sendUnitToWalkPoint(Vector3 v)
+    {
+        print("test1");
+        foreach(var unit in SelectedList)
+        {
+            unit.GetComponent<npcMovmentMec>().getWalkPoint(v);
+        }
     }
 }

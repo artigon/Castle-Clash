@@ -6,6 +6,15 @@ using UnityEngine.AI;
 
 public class npcMovmentMec : MonoBehaviour
 {
+    private Vector3 redWalkToKinght = new Vector3(651f, 12.19f, 512.4f);
+    private Vector3 redWalkToArcher = new Vector3(651f, 12.19f, 438.8f);
+    private Vector3 redWalkToCanon = new Vector3(651f, 12.19f, 568.9f);
+
+    private Vector3 blueWalkToKinght = new Vector3(1358.5f, 12.19f, 506.3f);
+    private Vector3 blueWalkToArcher = new Vector3(1358.5f, 12.19f, 583f) ;
+    private Vector3 blueWalkToCanon = new Vector3(1358.5f, 12.19f, 438.8f);
+
+
     public FireCannon fireCannonScript;
     public bool isCanone;
     public bool canAttack = true;
@@ -36,6 +45,9 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+     
+        
+
         if (isCanone)
             animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
         else
@@ -44,8 +56,24 @@ public class npcMovmentMec : MonoBehaviour
         //animator.SetInteger("state", 2);
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
-        walkPoint = walkPointFromUser.transform.position;
+        //walkPoint = walkPointFromUser.transform.position;
         walkPointSet = false;
+
+
+        if (this.name == "redKinghtNPC(Clone)")
+            getWalkPoint(redWalkToKinght);
+        if (this.name == "redArcherNPC(Clone)")
+            getWalkPoint(redWalkToArcher);
+        if (this.name == "RedCannonP(Clone)")
+            getWalkPoint(redWalkToCanon);
+
+
+        if (this.name == "blueknightNPC(Clone)")
+            getWalkPoint(blueWalkToKinght);
+        if (this.name == "blueArcherNPC(Clone)")
+            getWalkPoint(blueWalkToArcher);
+        if (this.name == "BlueCannonP(Clone)")
+            getWalkPoint(blueWalkToCanon);
     }
 
     // Update is called once per frame
@@ -55,8 +83,8 @@ public class npcMovmentMec : MonoBehaviour
             walkPointSet = false;
         if (!canAttack)
             agent.SetDestination(this.transform.position);
-        if (Input.GetKeyDown(KeyCode.Space))
-            walkPointSet = true;
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    walkPointSet = true;
 
         enemy = GameObject.FindGameObjectWithTag(enemyTag);
 
@@ -196,5 +224,12 @@ public class npcMovmentMec : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void getWalkPoint(Vector3 v)
+    {
+        print(this.name + "test 2");
+        walkPoint = v;
+        walkPointSet = true;
     }
 }

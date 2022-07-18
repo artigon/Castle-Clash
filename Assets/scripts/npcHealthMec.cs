@@ -12,6 +12,7 @@ public class npcHealthMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UnitSelections.Instance.unitList.Add(this.gameObject);
         if (isCanon)
             animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
         else
@@ -35,6 +36,7 @@ public class npcHealthMec : MonoBehaviour
 
     IEnumerator died()
     {
+        UnitSelections.Instance.unitList.Remove(this.gameObject);
         movmentMec.canAttack = false;
         if (isCanon)
             canonDeath.startCHeck = true;

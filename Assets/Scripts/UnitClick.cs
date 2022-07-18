@@ -11,6 +11,8 @@ public class UnitClick : MonoBehaviour
     public bool blueSelected;
     public LayerMask clickable;
     public LayerMask ground;
+    public UnitSelections unitSelections;
+    public GameObject clickMarker;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class UnitClick : MonoBehaviour
             //if we hit a clickable target
             RaycastHit hit;
             Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray,out hit,Mathf.Infinity,clickable))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
@@ -43,7 +45,19 @@ public class UnitClick : MonoBehaviour
 
                 }
             }
-            //if we didnt;
+        }
+        else if (Input.GetMouseButtonDown(1))
+        //else if (Input.GetMouseButtonDown(0) &&
+        //    Input.GetKeyDown(KeyCode.Z))
+        {
+            RaycastHit hit;
+            Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+            {
+                print("test 0");
+                unitSelections.sendUnitToWalkPoint(hit.point);
+                clickMarker.transform.position = hit.point;
+            }
         }
         else
         {
