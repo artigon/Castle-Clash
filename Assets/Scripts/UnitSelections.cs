@@ -27,6 +27,7 @@ public class UnitSelections : MonoBehaviour
     public void ClickSelect(GameObject unitToAdd)
     {
         Deselectall();
+
         SelectedList.Add(unitToAdd);
        // unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -45,6 +46,7 @@ public class UnitSelections : MonoBehaviour
     }
     public void DragSelect(GameObject unitToAdd)
     {
+        
         if (!SelectedList.Contains(unitToAdd))
         {
             SelectedList.Add(unitToAdd);
@@ -57,19 +59,18 @@ public class UnitSelections : MonoBehaviour
         //foreach (var unit in SelectedList)
         //{
         //    unit.transform.GetChild(0).gameObject.SetActive(false);
-        // }
-        //SelectedList.Clear();
+       // }
+        SelectedList.Clear();
     }
 
     public void Deselect(GameObject unitToDESLECT)
     {
 
     }
-
     public void sendUnitToWalkPoint(Vector3 v)
     {
         print("test1");
-        foreach(var unit in SelectedList)
+        foreach (var unit in SelectedList)
         {
             unit.GetComponent<npcMovmentMec>().getWalkPoint(v);
         }
