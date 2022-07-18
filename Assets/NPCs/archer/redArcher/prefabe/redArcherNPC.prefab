@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f235f424d706767488bd4833cf308ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCanon: 0
+  canonDeath: {fileID: 0}
   health: 10
   movmentMec: {fileID: 2043782703}
 --- !u!114 &2043782703
@@ -441,6 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72e3fc9cbc245940bb833c96fb3046e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireCannonScript: {fileID: 0}
+  isCanone: 0
   canAttack: 1
   npcDamegePoints: 4
   walkPointFromUser: {fileID: 0}
@@ -452,6 +456,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  whatIsEnemyFort:
+    serializedVersion: 2
+    m_Bits: 1024
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 0

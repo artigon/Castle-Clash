@@ -105,6 +105,9 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  whatIsEnemyFort:
+    serializedVersion: 2
+    m_Bits: 1024
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 1
   walkPointRange: 0

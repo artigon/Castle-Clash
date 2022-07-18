@@ -29,15 +29,15 @@ public class WallHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isWrecked)
-        {
-            if (transform.parent.name == "FrontWalls")
-                warningScript.setWarning("front");
-            else if (transform.parent.name == "RightSideWalls")
-                warningScript.setWarning("right");
-            else
-                warningScript.setWarning("left");
-        }
+        //if(isWrecked)
+        //{
+        //    if (transform.parent.name == "FrontWalls")
+        //        warningScript.setWarning("front");
+        //    else if (transform.parent.name == "RightSideWalls")
+        //        warningScript.setWarning("right");
+        //    else
+        //        warningScript.setWarning("left");
+        //}
             
         if (health < 40 && health > 0 && !isSemiRuined)
         {
@@ -86,5 +86,10 @@ public class WallHealth : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void takeDamege(int damege)
+    {
+        health = health - damege;
     }
 }

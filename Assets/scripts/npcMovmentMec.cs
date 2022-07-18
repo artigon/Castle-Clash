@@ -25,7 +25,7 @@ public class npcMovmentMec : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     //public Transform enemy;
-    public LayerMask whatIsGround, whatIsEnemy;
+    public LayerMask whatIsGround, whatIsEnemy, whatIsEnemyFort;
 
     //going to wayPoint
     public Vector3 walkPoint;
@@ -102,6 +102,17 @@ public class npcMovmentMec : MonoBehaviour
                 enemyInAttackRange = false;
         }
 
+        //walls in sight
+        enemyInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort);
+
+        if (enemyInSightRange)
+        {
+            attackRange = Vector3.Distance(enemy.transform.position, this.transform.position);
+            if (attackRange <= checkRangeForAttack)
+                enemyInAttackRange = true;
+            else
+                enemyInAttackRange = false;
+        }
 
         //check for sight and attack range
         if (!enemyInSightRange && !enemyInAttackRange)
@@ -176,14 +187,26 @@ public class npcMovmentMec : MonoBehaviour
             agent.SetDestination(this.transform.position);
             transform.LookAt(enemy.transform);
             print(this.gameObject.tag + " attacking\n");
-            if (isCanone)
-                StartCoroutine(fireCannonScript.canoneFire());
-            enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
-
-            if (!alreadyAttaked)
+            if (enemy.layer.Equals(whatIsEnemyFort))
             {
-                alreadyAttaked = true;
-                Invoke(nameof(resetAttack), timeBetweenAttacks);
+                enemy.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
+                if (!alreadyAttaked)
+                {
+                    alreadyAttaked = true;
+                    Invoke(nameof(resetAttack), timeBetweenAttacks);
+                }
+            }
+            else
+            {
+                if (isCanone)
+                    StartCoroutine(fireCannonScript.canoneFire());
+                enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
+
+                if (!alreadyAttaked)
+                {
+                    alreadyAttaked = true;
+                    Invoke(nameof(resetAttack), timeBetweenAttacks);
+                }
             }
         }
 
