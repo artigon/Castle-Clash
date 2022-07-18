@@ -30,6 +30,7 @@ public class UnitClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //UnitSelections.Instance.Deselectall();
             //if we hit a clickable target
             RaycastHit hit;
             Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
