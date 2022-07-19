@@ -24,7 +24,7 @@ public class WallHealth : MonoBehaviour
         setListGameObjects(ruinedWalls, 1); // index of son
         setListGameObjects(rubbles, 2); // index of son
         if (isFrontGate)
-            gate = transform.Find("FrontGateHP").GetChild(3).gameObject;
+            gate = transform.Find("FrontGateHP").GetChild(2).gameObject;
     }
 
     // Update is called once per frame

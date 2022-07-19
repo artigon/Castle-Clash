@@ -7,6 +7,8 @@ TagManager:
   - Interact
   - Red
   - Blue
+  - red fort
+  - blue fort
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Ground
   - Enemy Red Fort
   - Enemy Blue Fort
-  - 
+  - Fort
   - 
   - 
   - 

@@ -2099,7 +2099,6 @@ GameObject:
   - component: {fileID: 5544387193177869724}
   - component: {fileID: 5544387193178567772}
   - component: {fileID: 5544387193179774960}
-  - component: {fileID: 5544387193183834824}
   - component: {fileID: 5639313894566140027}
   m_Layer: 0
   m_Name: BackWall (ruined)
@@ -2173,20 +2172,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5544387193183834824
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5544387193177465756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 1dfc56d872d7cff4a917f33159e41ceb, type: 3}
 --- !u!114 &5639313894566140027
 MonoBehaviour:
   m_ObjectHideFlags: 0

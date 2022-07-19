@@ -11,7 +11,7 @@ public class npcMovmentMec : MonoBehaviour
     private Vector3 redWalkToCanon = new Vector3(651f, 12.19f, 568.9f);
 
     private Vector3 blueWalkToKinght = new Vector3(1358.5f, 12.19f, 506.3f);
-    private Vector3 blueWalkToArcher = new Vector3(1358.5f, 12.19f, 583f) ;
+    private Vector3 blueWalkToArcher = new Vector3(1358.5f, 12.19f, 583f);
     private Vector3 blueWalkToCanon = new Vector3(1358.5f, 12.19f, 438.8f);
 
 
@@ -21,7 +21,9 @@ public class npcMovmentMec : MonoBehaviour
     public int npcDamegePoints;
     public GameObject walkPointFromUser;
     public GameObject enemy;
+    public GameObject enemyFort;
     public string enemyTag;
+    public string enemyFortTag;
     private NavMeshAgent agent;
     private Animator animator;
     //public Transform enemy;
@@ -40,13 +42,14 @@ public class npcMovmentMec : MonoBehaviour
     public float sightRange, attackRange;
     public float checkRangeForAttack;
     public bool enemyInSightRange, enemyInAttackRange;
+    public bool enemyFortInSightRange, enemyFortInAttackRange;
 
 
     // Start is called before the first frame update
     void Start()
     {
-     
-        
+
+
 
         if (isCanone)
             animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
@@ -87,6 +90,7 @@ public class npcMovmentMec : MonoBehaviour
         //    walkPointSet = true;
 
         enemy = GameObject.FindGameObjectWithTag(enemyTag);
+        enemyFort = GameObject.FindGameObjectWithTag(enemyFortTag);
 
         if (enemy == null)
             walkingTowalkPoint();
@@ -102,16 +106,15 @@ public class npcMovmentMec : MonoBehaviour
                 enemyInAttackRange = false;
         }
 
-        //walls in sight
-        enemyInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort);
+        enemyFortInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort);
 
-        if (enemyInSightRange)
+        if (enemyFortInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort))
         {
-            attackRange = Vector3.Distance(enemy.transform.position, this.transform.position);
+            attackRange = Vector3.Distance(enemyFort.transform.position, this.transform.position);
             if (attackRange <= checkRangeForAttack)
-                enemyInAttackRange = true;
+                enemyFortInAttackRange = true;
             else
-                enemyInAttackRange = false;
+                enemyFortInAttackRange = false;
         }
 
         //check for sight and attack range
@@ -121,6 +124,8 @@ public class npcMovmentMec : MonoBehaviour
             chaseEnemy();
         if (enemyInSightRange && enemyInAttackRange)
             attackEnemy();
+        if (enemyFortInSightRange && enemyFortInAttackRange)
+            attackFort();
 
 
     }
@@ -187,27 +192,17 @@ public class npcMovmentMec : MonoBehaviour
             agent.SetDestination(this.transform.position);
             transform.LookAt(enemy.transform);
             print(this.gameObject.tag + " attacking\n");
-            if (enemy.layer.Equals(whatIsEnemyFort))
-            {
-                enemy.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
-                if (!alreadyAttaked)
-                {
-                    alreadyAttaked = true;
-                    Invoke(nameof(resetAttack), timeBetweenAttacks);
-                }
-            }
-            else
-            {
-                if (isCanone)
-                    StartCoroutine(fireCannonScript.canoneFire());
-                enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
-                if (!alreadyAttaked)
-                {
-                    alreadyAttaked = true;
-                    Invoke(nameof(resetAttack), timeBetweenAttacks);
-                }
+            if (isCanone)
+                StartCoroutine(fireCannonScript.canoneFire());
+            enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
+
+            if (!alreadyAttaked)
+            {
+                alreadyAttaked = true;
+                Invoke(nameof(resetAttack), timeBetweenAttacks);
             }
+
         }
 
     }
@@ -220,7 +215,7 @@ public class npcMovmentMec : MonoBehaviour
     IEnumerator changeState(int menu)
     {
         yield return new WaitForSeconds(0.01f);
-        switch(menu)
+        switch (menu)
         {
             case 0:
                 {
@@ -255,4 +250,30 @@ public class npcMovmentMec : MonoBehaviour
         walkPoint = v;
         walkPointSet = true;
     }
+
+    public void attackFortFirst(GameObject fort)
+    {
+        enemyFort = fort;
+        attackFort();
+    }
+
+    public void attackFort()
+    {
+        StartCoroutine(changeState(2));
+        agent.SetDestination(this.transform.position);
+        transform.LookAt(enemy.transform);
+        if (isCanone)
+            StartCoroutine(fireCannonScript.canoneFire());
+        enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
+
+        Invoke(nameof(resetAttackFort), timeBetweenAttacks);
+    }
+
+    public void resetAttackFort()
+    {
+        if (enemyFort.GetComponent<WallHealth>().health > 0)
+            attackFort();
+    }
+
+    
 }

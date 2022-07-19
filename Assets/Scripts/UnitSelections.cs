@@ -69,10 +69,17 @@ public class UnitSelections : MonoBehaviour
     }
     public void sendUnitToWalkPoint(Vector3 v)
     {
-        print("test1");
         foreach (var unit in SelectedList)
         {
             unit.GetComponent<npcMovmentMec>().getWalkPoint(v);
+        }
+    }
+
+    public void sendUnitToAttackFort(GameObject fort)
+    {
+        foreach (var unit in SelectedList)
+        {
+            unit.GetComponent<npcMovmentMec>().attackFortFirst(fort);
         }
     }
 }

@@ -11,6 +11,7 @@ public class UnitClick : MonoBehaviour
     public bool blueSelected;
     public LayerMask clickable;
     public LayerMask ground;
+    public LayerMask fort;
     public UnitSelections unitSelections;
     public GameObject clickMarker;
 
@@ -62,11 +63,10 @@ public class UnitClick : MonoBehaviour
             Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                print("test 0");
                 unitSelections.sendUnitToWalkPoint(hit.point);
-                clickMarker.transform.position = hit.point;
             }
+            clickMarker.transform.position = hit.point;
         }
-        
     }
 }
+

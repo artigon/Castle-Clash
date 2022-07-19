@@ -446,7 +446,9 @@ MonoBehaviour:
   npcDamegePoints: 2
   walkPointFromUser: {fileID: 0}
   enemy: {fileID: 0}
+  enemyFort: {fileID: 0}
   enemyTag: Blue
+  enemyFortTag: blue fort
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -465,6 +467,8 @@ MonoBehaviour:
   checkRangeForAttack: 6.5
   enemyInSightRange: 0
   enemyInAttackRange: 0
+  enemyFortInSightRange: 0
+  enemyFortInAttackRange: 0
 --- !u!195 &1144445549
 NavMeshAgent:
   m_ObjectHideFlags: 0
