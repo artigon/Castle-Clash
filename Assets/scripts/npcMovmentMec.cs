@@ -124,6 +124,8 @@ public class npcMovmentMec : MonoBehaviour
             chaseEnemy();
         if (enemyInSightRange && enemyInAttackRange)
             attackEnemy();
+        //if (enemyFortInSightRange && !enemyFortInAttackRange)
+        //    goToFort();
         if (enemyFortInSightRange && enemyFortInAttackRange)
             attackFort();
 
@@ -246,22 +248,28 @@ public class npcMovmentMec : MonoBehaviour
 
     public void getWalkPoint(Vector3 v)
     {
-        print(this.name + "test 2");
         walkPoint = v;
         walkPointSet = true;
     }
 
-    public void attackFortFirst(GameObject fort)
-    {
-        enemyFort = fort;
-        attackFort();
-    }
+    //public void goToFort()
+    //{
+    //    agent.SetDestination(enemyFort.transform.position);
+
+    //}
+
+    //public void attackFortFirst(GameObject fort)
+    //{
+    //    enemyFort = fort;
+    //    attackFort();
+    //}
 
     public void attackFort()
     {
+        print(this.name + "test 0");
         StartCoroutine(changeState(2));
         agent.SetDestination(this.transform.position);
-        transform.LookAt(enemy.transform);
+        transform.LookAt(enemyFort.transform);
         if (isCanone)
             StartCoroutine(fireCannonScript.canoneFire());
         enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);

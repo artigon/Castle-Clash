@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class WallHealth : MonoBehaviour
 {
-    public int health;
     public bool isFrontGate;
     private GameObject gate;
     private List<GameObject> walls;
@@ -13,7 +12,13 @@ public class WallHealth : MonoBehaviour
     private List<GameObject> ruinedWalls;
     public bool isSemiRuined;
     public bool isWrecked;
+
+
+    public int health;
     public FortWallsWarning warningScript;
+    public GameObject nextWall;
+
+
     // Start is called before the first frame update
     void Start()
     { 
@@ -41,6 +46,14 @@ public class WallHealth : MonoBehaviour
         //    else
         //        warningScript.setWarning("back"); 
         //}
+
+
+        if(health < 0)
+        {
+            // set msg
+            nextWall.SetActive(true);
+            this.gameObject.SetActive(false);
+        }
 
         if (health < 40 && health > 0 && !isSemiRuined)
         {
@@ -126,6 +139,7 @@ public class WallHealth : MonoBehaviour
 
     public void takeDamege(int damege)
     {
-        health = health - damege;
+        this.health = this.health - damege;
+        print("health: " + this.health);
     }
 }

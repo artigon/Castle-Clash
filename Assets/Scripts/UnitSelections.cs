@@ -75,11 +75,11 @@ public class UnitSelections : MonoBehaviour
         }
     }
 
-    public void sendUnitToAttackFort(GameObject fort)
-    {
-        foreach (var unit in SelectedList)
-        {
-            unit.GetComponent<npcMovmentMec>().attackFortFirst(fort);
-        }
-    }
+    //public void sendUnitToAttackFort(GameObject fort)
+    //{
+    //    foreach (var unit in SelectedList)
+    //    {
+    //        unit.GetComponent<npcMovmentMec>().attackFortFirst(fort);
+    //    }
+    //}
 }
