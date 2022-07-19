@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20975989, g: 0.5583856, b: 0.76848984, a: 1}
+  m_IndirectSpecularColor: {r: 0.28869838, g: 0.6479094, b: 0.86367565, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10733,11 +10733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4378828221286003846, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4378828221286003846, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: red fort
       objectReference: {fileID: 0}
     - target: {fileID: 4407065086376612415, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_Layer
@@ -11287,6 +11287,10 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6060246058696072725, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
+      propertyPath: whichWall
+      value: front
+      objectReference: {fileID: 0}
     - target: {fileID: 6067258745685562164, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11457,7 +11461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6654287304415298081, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_TagString
-      value: red fort
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6654287304415298081, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_NavMeshLayer
@@ -12013,7 +12017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331822009561697507, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: red fort
       objectReference: {fileID: 0}
     - target: {fileID: 8345736059344964615, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_Layer
