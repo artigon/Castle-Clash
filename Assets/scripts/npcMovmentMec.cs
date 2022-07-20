@@ -266,22 +266,33 @@ public class npcMovmentMec : MonoBehaviour
 
     public void attackFort()
     {
-        print(this.name + "test 0");
         StartCoroutine(changeState(2));
         agent.SetDestination(this.transform.position);
         transform.LookAt(enemyFort.transform);
         if (isCanone)
             StartCoroutine(fireCannonScript.canoneFire());
-        enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
+        if (enemyFort.name.Equals("Tower"))
+            enemyFort.GetComponent<Fort>().TakeDamage();
+        else
+            enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
 
         Invoke(nameof(resetAttackFort), timeBetweenAttacks);
+
     }
 
     public void resetAttackFort()
     {
-        if (enemyFort.GetComponent<WallHealth>().health > 0)
-            attackFort();
+        if (enemyFort.name.Equals("Tower"))
+        {
+            if (enemyFort.GetComponent<Fort>().health > 0)
+                attackFort();
+        }
+        else
+        {
+            if (enemyFort.GetComponent<WallHealth>().health > 0)
+                attackFort();
+        }
     }
 
-    
+
 }
