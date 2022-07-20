@@ -272,7 +272,7 @@ public class npcMovmentMec : MonoBehaviour
         if (isCanone)
             StartCoroutine(fireCannonScript.canoneFire());
         if (enemyFort.name.Equals("Tower"))
-            enemyFort.GetComponent<Fort>().TakeDamage();
+            enemyFort.GetComponent<Fort>().TakeDamage(npcDamegePoints);
         else
             enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
 

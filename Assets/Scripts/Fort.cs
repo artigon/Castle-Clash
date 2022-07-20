@@ -8,10 +8,11 @@ public class Fort : MonoBehaviour
     public float health, maxHealth,ruindCheck;
     public HealthManagement healthBar;
 
-    public void TakeDamage()
+    public void TakeDamage(int damege)
     {
+        print("tower health: " + health);
         // Use your own damage handling code, or this example one.
-        health -= 100;//change to damage
+        health -= damege;//change to damage
         healthBar.UpdateHealthBar();
     }
     void Update()
