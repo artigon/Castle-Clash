@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 public class FireCannon : MonoBehaviour
 {
     // This script launches a projectile prefab by instantiating it at the position
