@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class spawnNPC : MonoBehaviour
 {
+    public GameObject gameMecanec;
+    public Text warnings;
+
     public bool redSelect;
     public GameObject redKnightPrefabe;
     public GameObject redArcherPrefabe;
@@ -31,7 +36,9 @@ public class spawnNPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(redSelect)
+        gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
+
+        if (redSelect)
         {
             knightPrefabe = redKnightPrefabe;
             archerPrefabe = redArcherPrefabe;
@@ -57,24 +64,51 @@ public class spawnNPC : MonoBehaviour
 
     public void spawnKnight()
     {
-        StartCoroutine(dealy(5));
-        Instantiate(knightPrefabe, spawnPointHuman, Quaternion.identity);
+        if (gameMecanec.GetComponent<gameMecanecSystem>().playesCoins >= 15)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().playesCoins -= 15;
+            StartCoroutine(dealy(5));
+            Instantiate(knightPrefabe, spawnPointHuman, Quaternion.identity);
+        }
+        else
+            StartCoroutine(playerwarning());
+
     }
 
     public void spawnArcher()
     {
-        StartCoroutine(dealy(10));
-        Instantiate(archerPrefabe, spawnPointHuman, Quaternion.identity);
+        if (gameMecanec.GetComponent<gameMecanecSystem>().playesCoins >= 25)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().playesCoins -= 25;
+            StartCoroutine(dealy(10));
+            Instantiate(archerPrefabe, spawnPointHuman, Quaternion.identity);
+        }
+        else
+            StartCoroutine(playerwarning());
+
     }
 
     public void spawnCanon()
     {
-        StartCoroutine(dealy(30));
-        Instantiate(canonPrefabe, spawnPointCanon, Quaternion.identity);
+        if (gameMecanec.GetComponent<gameMecanecSystem>().playesCoins >= 40)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().playesCoins -= 40;
+            StartCoroutine(dealy(30));
+            Instantiate(canonPrefabe, spawnPointCanon, Quaternion.identity);
+        }
+        else
+            StartCoroutine(playerwarning());
     }
 
     IEnumerator dealy(int time)
     {
         yield return new WaitForSeconds(time);
+    }
+
+    IEnumerator playerwarning()
+    {
+        warnings.text = "You dont have enough coins";
+        yield return new WaitForSeconds(5);
+        warnings.text = "";
     }
 }

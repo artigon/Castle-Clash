@@ -85,11 +85,11 @@ public class RTSCameraController : MonoBehaviour {
                 panMovement += Vector3.right * panSpeed * Time.deltaTime;
                 //pos.x += panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.E))
             {
                panMovement += Vector3.up * panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.Q))
             {
                 panMovement += Vector3.down * panSpeed * Time.deltaTime;
             }

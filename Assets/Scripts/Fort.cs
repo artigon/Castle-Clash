@@ -7,7 +7,13 @@ public class Fort : MonoBehaviour
   
     public float health, maxHealth,ruindCheck;
     public HealthManagement healthBar;
+    public gameMecanecSystem gameMecanec;
 
+    private void Start()
+    {
+        gameMecanec = GameObject.FindGameObjectWithTag("gamemec").GetComponent<gameMecanecSystem>();
+
+    }
     public void TakeDamage(int damege)
     {
         print("tower health: " + health);
@@ -23,6 +29,12 @@ public class Fort : MonoBehaviour
         //    TakeDamage();
         //}
         if (health < 0)
+        {
             this.gameObject.SetActive(false);
+            if (this.tag.Equals("red fort"))
+                gameMecanec.playerWins = true;
+            else
+                gameMecanec.enemyWins = true;
+        }
     }
 }

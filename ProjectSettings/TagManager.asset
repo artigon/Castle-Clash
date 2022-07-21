@@ -10,6 +10,7 @@ TagManager:
   - red fort
   - blue fort
   - rubble
+  - gamemec
   layers:
   - Default
   - TransparentFX

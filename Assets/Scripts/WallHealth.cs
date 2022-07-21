@@ -14,11 +14,13 @@ public class WallHealth : MonoBehaviour
     public FortWallsWarning warningScript;
     public GameObject nextWall;
     public GameObject ruinds;
+    public GameObject gameMecanec;
 
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
     }
 
     // Update is called once per frame
@@ -35,6 +37,15 @@ public class WallHealth : MonoBehaviour
 
             nextWall.SetActive(true);
             this.gameObject.SetActive(false);
+            if (this.tag.Equals("red fort"))
+            {
+                gameMecanec.GetComponent<gameMecanecSystem>().playesCoins += 50;
+
+            }
+            else
+            {
+                gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins += 50;
+            }
         }
     }
 
