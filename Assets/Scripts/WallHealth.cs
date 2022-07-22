@@ -6,39 +6,36 @@ using UnityEngine.UI;
 public class WallHealth : MonoBehaviour
 {
     public string whichWall;
-    // whichWall = front, left, right or back
-    public bool isNextWreck;
     public int health;
     public int maxHealth;
     public int ruindCheck;
-    public FortWallsWarning warningScript;
-    public GameObject nextWall;
+    public GameObject rubble;
     public GameObject ruinds;
     public GameObject gameMecanec;
-    public Text testText;
+    public Text warnings;
+    public bool redOrBlue = false; //red = false/ blue = true
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
-        StartCoroutine(test());
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (health < ruindCheck && health > 0)
+        {
             ruinds.SetActive(true);
-
+            StartCoroutine(showWarning(false));
+        }
         else if (health <= 0)
         {
-            // set msg
-            if (isNextWreck && whichWall != null)
-                warningScript.setWarning(whichWall);
-
-            nextWall.SetActive(true);
+            StartCoroutine(showWarning(true));
+            rubble.SetActive(true);
             this.gameObject.SetActive(false);
             if (this.tag.Equals("red fort"))
             {
@@ -56,14 +53,28 @@ public class WallHealth : MonoBehaviour
     {
         this.health = this.health - damege;
         print("health: " + this.health);
-        StartCoroutine(test());
     }
 
-    IEnumerator test()
+    IEnumerator showWarning(bool check)
     {
-        testText.text = health.ToString();
-        yield return new WaitForSeconds(3);
-        testText.text = "";
+        
+        if (check)
+        {
+            if (redOrBlue)
+                warnings.text = "My Lord!, We have breached the enemys " + whichWall;
+            else
+                warnings.text = "My Lord!, The enemy has breached the " + whichWall;
+        }
+        else
+        {
+            if (redOrBlue)
+                warnings.text = "My Lord!, We have cracked the enemys " + whichWall;
+            else
+                warnings.text = "My Lord!, The enemy has cracked the " + whichWall;
+        }
+
+        yield return new WaitForSeconds(5);
+        warnings.text = "";
     }
 
 }

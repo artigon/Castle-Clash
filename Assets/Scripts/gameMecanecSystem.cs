@@ -25,15 +25,12 @@ public class gameMecanecSystem : MonoBehaviour
         playrsCoinsText.text = "" + playesCoins;
         if(playerWins)
         {
-            stopCoinLoop = true;
-            winScreen.SetActive(true);
-            backToLobyBtn.SetActive(true);
+            StartCoroutine(endGame(true));
+
         }
         else if(enemyWins)
         {
-            stopCoinLoop = true;
-            loseScreen.SetActive(true);
-            backToLobyBtn.SetActive(true);
+            StartCoroutine(endGame(false));
         }
     }
     public void startLoop()
@@ -55,5 +52,22 @@ public class gameMecanecSystem : MonoBehaviour
     public void restartGame()
     {
         Application.LoadLevel(Application.loadedLevel);
+    }
+
+    IEnumerator endGame(bool check)
+    {
+        yield return new WaitForSeconds(5);
+        if(check)
+        {
+            stopCoinLoop = true;
+            winScreen.SetActive(true);
+            backToLobyBtn.SetActive(true);
+        }
+        else
+        {
+            stopCoinLoop = true;
+            loseScreen.SetActive(true);
+            backToLobyBtn.SetActive(true);
+        }
     }
 }
