@@ -22,6 +22,8 @@ public class WallHealth : MonoBehaviour
     void Start()
     {
         gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
+        StartCoroutine(test());
+
     }
 
     // Update is called once per frame
