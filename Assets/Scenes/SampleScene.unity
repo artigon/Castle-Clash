@@ -6730,7 +6730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb8b57566dff5449b8976b8c1d56a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiptoShow: Unit:Cannon Damage:5 Health:20  Price:15  "A mighty siege weapon to
+  tiptoShow: Unit:Cannon Damage:5 Health:20  Price:40  "A mighty siege weapon to
     crush both man and walls"
 --- !u!1001 &814963390
 PrefabInstance:
@@ -7622,7 +7622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb8b57566dff5449b8976b8c1d56a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiptoShow: Unit :archer Damage:4 Health:10 Price:10 "Aargh my knee!!!"
+  tiptoShow: Unit :archer Damage:4 Health:10 Price:25 "Aargh my knee!!!"
 --- !u!1 &1000686779
 GameObject:
   m_ObjectHideFlags: 0
@@ -8189,8 +8189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb8b57566dff5449b8976b8c1d56a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiptoShow: 'Unit: knight  Damage:2  Health:30   Price:5  "  A cheap and tough unit
-    the knight is the mainstay of any army"'
+  tiptoShow: 'Unit: knight  Damage:2  Health:30   Price:15  "  A cheap and tough
+    unit the knight is the mainstay of any army"'
 --- !u!1 &1150413190 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1922889537892494269, guid: fed7b81c3f362f64dbc2446bc821a106, type: 3}
