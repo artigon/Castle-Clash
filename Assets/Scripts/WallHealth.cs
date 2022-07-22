@@ -15,6 +15,7 @@ public class WallHealth : MonoBehaviour
     public GameObject nextWall;
     public GameObject ruinds;
     public GameObject gameMecanec;
+    public Text testText;
 
 
     // Start is called before the first frame update
@@ -53,5 +54,14 @@ public class WallHealth : MonoBehaviour
     {
         this.health = this.health - damege;
         print("health: " + this.health);
+        StartCoroutine(test());
     }
+
+    IEnumerator test()
+    {
+        testText.text = health.ToString();
+        yield return new WaitForSeconds(3);
+        testText.text = "";
+    }
+
 }
