@@ -6439,6 +6439,14 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8331822009561697507, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331822009561697507, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
+      propertyPath: m_TagString
+      value: blue fort
+      objectReference: {fileID: 0}
     - target: {fileID: 8345736059344964615, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -14051,7 +14059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331822009561697507, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8331822009561697507, guid: ff16797040a41984c85a0b518e3d5818, type: 3}
       propertyPath: m_IsActive
