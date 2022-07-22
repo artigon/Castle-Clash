@@ -49,9 +49,6 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
-
         if (isCanone)
             animator = transform.GetChild(1).gameObject.GetComponent<Animator>();
         else
