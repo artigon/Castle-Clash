@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
+
 public class npcMovmentMec : MonoBehaviour
 {
     private Vector3 redWalkToKinght = new Vector3(651f, 12.19f, 512.4f);
@@ -52,7 +53,7 @@ public class npcMovmentMec : MonoBehaviour
 
 
         if (isCanone)
-            animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+            animator = transform.GetChild(1).gameObject.GetComponent<Animator>();
         else
             animator = GetComponent<Animator>();
         //animator.SetInteger("state", 0);
@@ -190,13 +191,16 @@ public class npcMovmentMec : MonoBehaviour
     {
         if (canAttack)
         {
-            StartCoroutine(changeState(2));
-            agent.SetDestination(this.transform.position);
-            transform.LookAt(enemy.transform);
-            print(this.gameObject.tag + " attacking\n");
-
             if (isCanone)
                 StartCoroutine(fireCannonScript.canoneFire());
+            else
+                StartCoroutine(changeState(2));
+
+            agent.SetDestination(this.transform.position);
+            transform.LookAt(enemy.transform);
+            print(this.gameObject.name + " attacking\n");
+
+            
             enemy.GetComponent<npcHealthMec>().takeDamege(npcDamegePoints);
 
             if (!alreadyAttaked)
