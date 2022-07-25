@@ -12,6 +12,8 @@ public class Fort : MonoBehaviour
     public GameObject Tower,rubble, ruinds;
     public bool redOrBlue;//red = false/ blue = true
     public Text warnings;
+    private bool firstWarning = false, secondWarning = false;
+
 
     private void Start()
     {
@@ -21,11 +23,11 @@ public class Fort : MonoBehaviour
    
     void Update()
     {
-        if (health < ruindCheck && health > 0)
+        if (health < ruindCheck && health > 0 && !firstWarning)
         {
             ruinds.SetActive(true);
         }
-        else if (health < 0)
+        else if (health < 0 && !secondWarning)
         {
             Tower.SetActive(false);
             ruinds.SetActive(false);
@@ -46,22 +48,26 @@ public class Fort : MonoBehaviour
         healthBar.UpdateHealthBar();
     }
 
-    IEnumerator showWarning(bool check)
+    IEnumerator showWarning(bool check,int numWarning)
     {
+        if (numWarning == 0)
+            firstWarning = true;
+        else
+            secondWarning = true;
         string tmp;
         if (check)
         {
-            if (redOrBlue)
-                tmp = "My Lord!, We have breached the enemys Tower";
+            if (this.tag.Equals("red fort"))
+                tmp = "My Lord!, We have breached \nthe enemys Tower";
             else
-                tmp = "My Lord!, The enemy has breached the Tower";
+                tmp = "My Lord!, The enemy has \nbreached the Tower";
         }
         else
         {
-            if (redOrBlue)
-                tmp = "My Lord!, We have cracked the enemys Tower";
+            if (this.tag.Equals("red fort"))
+                tmp = "My Lord!, We have cracked \nthe enemys Tower";
             else
-                tmp = "My Lord!, The enemy has cracked the Tower";
+                tmp = "My Lord!, The enemy has \ncracked the Tower";
         }
         warnings.text = tmp;
         yield return new WaitForSeconds(5);

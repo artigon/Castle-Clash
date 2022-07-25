@@ -14,6 +14,7 @@ public class WallHealth : MonoBehaviour
     public GameObject gameMecanec;
     public Text warnings;
     public bool redOrBlue = false; //red = false/ blue = true
+    private bool firstWarning = false, secondWarning = false;
 
 
     // Start is called before the first frame update
@@ -27,14 +28,14 @@ public class WallHealth : MonoBehaviour
     void Update()
     {
         
-        if (health < ruindCheck && health > 0)
+        if ((health < ruindCheck && health > 0) && !firstWarning)
         {
             ruinds.SetActive(true);
-            StartCoroutine(showWarning(false));
+            StartCoroutine(showWarning(false,0));
         }
-        else if (health <= 0)
+        else if (health <= 0 && !secondWarning)
         {
-            StartCoroutine(showWarning(true));
+            StartCoroutine(showWarning(true,1));
             rubble.SetActive(true);
             this.gameObject.SetActive(false);
             if (this.tag.Equals("red fort"))
@@ -52,22 +53,26 @@ public class WallHealth : MonoBehaviour
     public void takeDamege(int damege)
     {
         this.health = this.health - damege;
-        print("health: " + this.health);
+        print(this.name + " health: " + this.health);
     }
 
-    IEnumerator showWarning(bool check)
+    IEnumerator showWarning(bool check, int numWarning)
     {
-        
+        if (numWarning == 0)
+            firstWarning = true;
+        else
+            secondWarning = true;
+
         if (check)
         {
-            if (redOrBlue)
+            if (this.tag.Equals("red fort"))
                 warnings.text = "My Lord!, We have breached the enemys " + whichWall;
             else
                 warnings.text = "My Lord!, The enemy has breached the " + whichWall;
         }
         else
         {
-            if (redOrBlue)
+            if (this.tag.Equals("red fort"))
                 warnings.text = "My Lord!, We have cracked the enemys " + whichWall;
             else
                 warnings.text = "My Lord!, The enemy has cracked the " + whichWall;

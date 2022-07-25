@@ -104,7 +104,7 @@ public class npcMovmentMec : MonoBehaviour
                 enemyInAttackRange = false;
         }
 
-        enemyFortInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort);
+        //enemyFortInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort);
 
         if (enemyFortInSightRange = Physics.CheckSphere(this.transform.position, sightRange, whatIsEnemyFort))
         {

@@ -14,8 +14,8 @@ public class gameMecanecSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playesCoins = 1000;//mabye change
-        enemyCoins = 100;
+        //playesCoins = 1000;//mabye change
+        //enemyCoins = 100;
     }
 
     // Update is called once per frame
