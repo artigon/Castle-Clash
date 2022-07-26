@@ -15,7 +15,8 @@ public class npcMovmentMec : MonoBehaviour
     private Vector3 blueWalkToArcher = new Vector3(1358.5f, 12.19f, 583f);
     private Vector3 blueWalkToCanon = new Vector3(1358.5f, 12.19f, 438.8f);
 
-
+    public bool attackAi = false;
+    private bool atttackAicheck = true;
     public FireCannon fireCannonScript;
     public bool isCanone;
     public bool canAttack = true;
@@ -49,6 +50,8 @@ public class npcMovmentMec : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         if (isCanone)
             animator = transform.GetChild(1).gameObject.GetComponent<Animator>();
         else
@@ -80,6 +83,9 @@ public class npcMovmentMec : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (attackAi && atttackAicheck)
+            attackAiFunc();
+
         if (Vector3.Distance(walkPoint, this.transform.position) <= 10f)
             walkPointSet = false;
         if (!canAttack)
@@ -253,6 +259,13 @@ public class npcMovmentMec : MonoBehaviour
         walkPointSet = true;
     }
 
+    public void attackAiFunc()
+    {
+        walkPoint = new Vector3(1398, 19.35f, 567.3f); 
+        walkPointSet = true;
+        atttackAicheck = false;
+    }
+
     //public void goToFort()
     //{
     //    agent.SetDestination(enemyFort.transform.position);
@@ -272,7 +285,7 @@ public class npcMovmentMec : MonoBehaviour
         transform.LookAt(enemyFort.transform);
         if (isCanone)
             StartCoroutine(fireCannonScript.canoneFire());
-        if (enemyFort.name.Equals("Tower"))
+        if (enemyFort.name.Equals("TowerParent"))
             enemyFort.GetComponent<Fort>().TakeDamage(npcDamegePoints);
         else
             enemyFort.GetComponent<WallHealth>().takeDamege(npcDamegePoints);
@@ -283,7 +296,7 @@ public class npcMovmentMec : MonoBehaviour
 
     public void resetAttackFort()
     {
-        if (enemyFort.name.Equals("Tower"))
+        if (enemyFort.name.Equals("TowerParent"))
         {
             if (enemyFort.GetComponent<Fort>().health > 0)
                 attackFort();

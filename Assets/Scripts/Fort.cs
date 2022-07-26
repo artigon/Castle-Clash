@@ -11,24 +11,27 @@ public class Fort : MonoBehaviour
     public gameMecanecSystem gameMecanec;
     public GameObject Tower,rubble, ruinds;
     public bool redOrBlue;//red = false/ blue = true
-    public Text warnings;
+    public warningMec warningMec;
     private bool firstWarning = false, secondWarning = false;
 
 
     private void Start()
     {
         gameMecanec = GameObject.FindGameObjectWithTag("gamemec").GetComponent<gameMecanecSystem>();
+        warningMec = GameObject.FindGameObjectWithTag("warningMec").GetComponent<warningMec>();
 
     }
-   
+
     void Update()
     {
         if (health < ruindCheck && health > 0 && !firstWarning)
         {
+            StartCoroutine(showWarning(false, 0));
             ruinds.SetActive(true);
         }
         else if (health < 0 && !secondWarning)
         {
+            StartCoroutine(showWarning(true, 1));
             Tower.SetActive(false);
             ruinds.SetActive(false);
             rubble.SetActive(true);
@@ -53,23 +56,21 @@ public class Fort : MonoBehaviour
             firstWarning = true;
         else
             secondWarning = true;
-        string tmp;
         if (check)
         {
             if (this.tag.Equals("red fort"))
-                tmp = "My Lord!, We have breached \nthe enemys Tower";
+                warningMec.showWarning("My Lord!, We have destroyed the enemys Tower");
             else
-                tmp = "My Lord!, The enemy has \nbreached the Tower";
+                warningMec.showWarning("My Lord!, The enemy has destroyed the Tower");
         }
         else
         {
             if (this.tag.Equals("red fort"))
-                tmp = "My Lord!, We have cracked \nthe enemys Tower";
+                warningMec.showWarning("My Lord!, We have cracked the enemys Tower");
             else
-                tmp = "My Lord!, The enemy has \ncracked the Tower";
+                warningMec.showWarning("My Lord!, The enemy has cracked the Tower");
         }
-        warnings.text = tmp;
         yield return new WaitForSeconds(5);
-        warnings.text = "";
+       
     }
 }

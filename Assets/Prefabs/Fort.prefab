@@ -1385,7 +1385,7 @@ MonoBehaviour:
   rubble: {fileID: 3814740856498248400}
   ruinds: {fileID: 6970951375804311654}
   redOrBlue: 0
-  warnings: {fileID: 0}
+  warningMec: {fileID: 0}
 --- !u!1 &386566336579978670
 GameObject:
   m_ObjectHideFlags: 0
@@ -26607,7 +26607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8345488023584751868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.094885476, y: 0, z: -43.80263}
+  m_LocalPosition: {x: 0.1, y: 0, z: -0}
   m_LocalScale: {x: 1.4281516, y: 1, z: 0.84709865}
   m_Children:
   - {fileID: 7749985989750496429}
@@ -28983,7 +28983,7 @@ MonoBehaviour:
   rubble: {fileID: 6812483616205369940}
   ruinds: {fileID: 4590656449296002540}
   gameMecanec: {fileID: 0}
-  warnings: {fileID: 0}
+  warningMec: {fileID: 0}
   redOrBlue: 0
 --- !u!1001 &3849696864491537741
 PrefabInstance:
@@ -29097,7 +29097,7 @@ MonoBehaviour:
   rubble: {fileID: 431137043963863960}
   ruinds: {fileID: 386566336579978670}
   gameMecanec: {fileID: 0}
-  warnings: {fileID: 0}
+  warningMec: {fileID: 0}
   redOrBlue: 0
 --- !u!1001 &3849696864528795578
 PrefabInstance:
@@ -29284,7 +29284,7 @@ MonoBehaviour:
   rubble: {fileID: 8640795761812021409}
   ruinds: {fileID: 8345488023584751868}
   gameMecanec: {fileID: 0}
-  warnings: {fileID: 0}
+  warningMec: {fileID: 0}
   redOrBlue: 0
 --- !u!1001 &3849696864938611428
 PrefabInstance:
@@ -29615,7 +29615,7 @@ MonoBehaviour:
   rubble: {fileID: 3213755081141746223}
   ruinds: {fileID: 1503849695035189486}
   gameMecanec: {fileID: 0}
-  warnings: {fileID: 0}
+  warningMec: {fileID: 0}
   redOrBlue: 0
 --- !u!1001 &6169251982176105734
 PrefabInstance:

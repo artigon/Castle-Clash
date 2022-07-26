@@ -5,12 +5,11 @@ using UnityEngine;
 public class compAI : MonoBehaviour
 {
     public spawnNPC spawnScript;
-    public Vector3 walkpoint;
     // Start is called before the first frame update
     void Start()
     {
 
-        StartCoroutine(Ai());
+        //StartCoroutine(Ai());
     }
 
     // Update is called once per frame
@@ -30,24 +29,26 @@ public class compAI : MonoBehaviour
     
     IEnumerator Ai()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         bool walkPointCheck = randomBoolean();
-        int menu = Random.Range(1, 3);
-        switch(menu)
+        int menu = Random.Range(0, 4);
+        print("compAi: " + walkPointCheck);
+
+        switch (menu)
         {
             case 1:
                 {
-                    spawnScript.spawnRedKnight(walkpoint, walkPointCheck);
+                    spawnScript.spawnRedKnight(walkPointCheck);
                     break;
                 }
             case 2:
                 {
-                    spawnScript.spawnRedArcher(walkpoint, walkPointCheck);
+                    spawnScript.spawnRedArcher(walkPointCheck);
                     break;
                 }
             case 3:
                 {
-                    spawnScript.spawnRedCanon(walkpoint, walkPointCheck);
+                    spawnScript.spawnRedCanon(walkPointCheck);
                     break;
                 }
         }

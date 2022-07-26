@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class spawnNPC : MonoBehaviour
 {
     public GameObject gameMecanec;
-    public Text warnings;
+    public warningMec warningMec;
+
 
     public bool redSelect;
     public GameObject redKnightPrefabe;
@@ -37,6 +38,7 @@ public class spawnNPC : MonoBehaviour
     void Start()
     {
         gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
+        warningMec = GameObject.FindGameObjectWithTag("warningMec").GetComponent<warningMec>();
 
         if (redSelect)
         {
@@ -100,31 +102,29 @@ public class spawnNPC : MonoBehaviour
             StartCoroutine(playerwarning());
     }
 
-    public bool spawnRedKnight(Vector3 newWalkoint,bool walkPointCheck)
+    public bool spawnRedKnight(bool walkPointCheck)
     {
-        Vector3 walkPoint = spawnPointHuman;
-        if (walkPointCheck)
-            walkPoint = newWalkoint;
             if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 15)
         {
             gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 15;
             StartCoroutine(dealy(5));
-            Instantiate(knightPrefabe, walkPoint, Quaternion.identity);
+            if(walkPointCheck)
+                knightPrefabe.GetComponent<npcMovmentMec>().attackAi = true;
+            Instantiate(knightPrefabe, spawnPointHuman, Quaternion.identity);
             return true;
         }
         return false;
 
     }
 
-    public bool spawnRedArcher(Vector3 newWalkoint, bool walkPointCheck)
+    public bool spawnRedArcher(bool walkPointCheck)
     {
-        Vector3 walkPoint = spawnPointHuman;
-        if (walkPointCheck)
-            walkPoint = newWalkoint;
         if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 25)
         {
             gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 25;
             StartCoroutine(dealy(10));
+            if(walkPointCheck)
+                archerPrefabe.GetComponent<npcMovmentMec>().attackAi = true;
             Instantiate(archerPrefabe, spawnPointHuman, Quaternion.identity);
             return true;
         }
@@ -132,15 +132,15 @@ public class spawnNPC : MonoBehaviour
 
     }
 
-    public bool spawnRedCanon(Vector3 newWalkoint, bool walkPointCheck)
+    public bool spawnRedCanon(bool walkPointCheck)
     {
-        Vector3 walkPoint = spawnPointHuman;
-        if (walkPointCheck)
-            walkPoint = newWalkoint;
+        
         if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 40)
         {
             gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 40;
             StartCoroutine(dealy(30));
+            if (walkPointCheck)
+                canonPrefabe.GetComponent<npcMovmentMec>().attackAi = true;
             Instantiate(canonPrefabe, spawnPointCanon, Quaternion.identity);
             return true;
         }
@@ -154,8 +154,7 @@ public class spawnNPC : MonoBehaviour
 
     IEnumerator playerwarning()
     {
-        warnings.text = "You dont have enough coins";
+        warningMec.showWarning("You dont have enough coins");
         yield return new WaitForSeconds(5);
-        warnings.text = "";
     }
 }

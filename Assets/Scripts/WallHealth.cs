@@ -12,7 +12,7 @@ public class WallHealth : MonoBehaviour
     public GameObject rubble;
     public GameObject ruinds;
     public GameObject gameMecanec;
-    public Text warnings;
+    public warningMec warningMec;
     public bool redOrBlue = false; //red = false/ blue = true
     private bool firstWarning = false, secondWarning = false;
 
@@ -21,6 +21,7 @@ public class WallHealth : MonoBehaviour
     void Start()
     {
         gameMecanec = GameObject.FindGameObjectWithTag("gamemec");
+        warningMec = GameObject.FindGameObjectWithTag("warningMec").GetComponent<warningMec>();
 
     }
 
@@ -66,20 +67,19 @@ public class WallHealth : MonoBehaviour
         if (check)
         {
             if (this.tag.Equals("red fort"))
-                warnings.text = "My Lord!, We have breached the enemys " + whichWall;
+                warningMec.showWarning("My Lord!, We have breached the enemys " + whichWall);
             else
-                warnings.text = "My Lord!, The enemy has breached the " + whichWall;
+                warningMec.showWarning("My Lord!, The enemy has breached the " + whichWall);
         }
         else
         {
             if (this.tag.Equals("red fort"))
-                warnings.text = "My Lord!, We have cracked the enemys " + whichWall;
+                warningMec.showWarning("My Lord!, We have cracked the enemys " + whichWall);
             else
-                warnings.text = "My Lord!, The enemy has cracked the " + whichWall;
+                warningMec.showWarning("My Lord!, The enemy has cracked the " + whichWall);
         }
 
         yield return new WaitForSeconds(5);
-        warnings.text = "";
     }
 
 }

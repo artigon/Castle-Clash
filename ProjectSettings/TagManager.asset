@@ -11,6 +11,7 @@ TagManager:
   - blue fort
   - rubble
   - gamemec
+  - warningMec
   layers:
   - Default
   - TransparentFX

@@ -10,12 +10,14 @@ public class gameMecanecSystem : MonoBehaviour
     public Text playrsCoinsText;
     public bool playerWins = false, enemyWins = false,
         stopCoinLoop = false;
-    public GameObject winScreen, loseScreen, backToLobyBtn;
+    public GameObject endGamePanel, winScreen, loseScreen, backToLobyBtn;
     // Start is called before the first frame update
     void Start()
     {
         //playesCoins = 1000;//mabye change
         //enemyCoins = 100;
+        startLoop();
+
     }
 
     // Update is called once per frame
@@ -45,7 +47,6 @@ public class gameMecanecSystem : MonoBehaviour
             enemyCoins += 50;
             yield return new WaitForSeconds(5);
             StartCoroutine(addCoin());
-
         }
     }
 
@@ -55,12 +56,14 @@ public class gameMecanecSystem : MonoBehaviour
         if(check)
         {
             stopCoinLoop = true;
+            endGamePanel.SetActive(true);
             winScreen.SetActive(true);
             backToLobyBtn.SetActive(true);
         }
         else
         {
             stopCoinLoop = true;
+            endGamePanel.SetActive(true);
             loseScreen.SetActive(true);
             backToLobyBtn.SetActive(true);
         }
