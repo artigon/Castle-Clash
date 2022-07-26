@@ -32,7 +32,6 @@ public class Fort : MonoBehaviour
             Tower.SetActive(false);
             ruinds.SetActive(false);
             rubble.SetActive(true);
-            this.gameObject.SetActive(false);
             if (this.tag.Equals("red fort"))
                 gameMecanec.playerWins = true;
             else
