@@ -41,17 +41,12 @@ public class gameMecanecSystem : MonoBehaviour
     {
         if (!stopCoinLoop)
         {
-            playesCoins += 1;
-            enemyCoins += 1;
-            yield return new WaitForSeconds(30);
+            playesCoins += 50;
+            enemyCoins += 50;
+            yield return new WaitForSeconds(5);
             StartCoroutine(addCoin());
 
         }
-    }
-
-    public void restartGame()
-    {
-        Application.LoadLevel(Application.loadedLevel);
     }
 
     IEnumerator endGame(bool check)

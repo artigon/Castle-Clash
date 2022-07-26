@@ -100,6 +100,53 @@ public class spawnNPC : MonoBehaviour
             StartCoroutine(playerwarning());
     }
 
+    public bool spawnRedKnight(Vector3 newWalkoint,bool walkPointCheck)
+    {
+        Vector3 walkPoint = spawnPointHuman;
+        if (walkPointCheck)
+            walkPoint = newWalkoint;
+            if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 15)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 15;
+            StartCoroutine(dealy(5));
+            Instantiate(knightPrefabe, walkPoint, Quaternion.identity);
+            return true;
+        }
+        return false;
+
+    }
+
+    public bool spawnRedArcher(Vector3 newWalkoint, bool walkPointCheck)
+    {
+        Vector3 walkPoint = spawnPointHuman;
+        if (walkPointCheck)
+            walkPoint = newWalkoint;
+        if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 25)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 25;
+            StartCoroutine(dealy(10));
+            Instantiate(archerPrefabe, spawnPointHuman, Quaternion.identity);
+            return true;
+        }
+        return false;
+
+    }
+
+    public bool spawnRedCanon(Vector3 newWalkoint, bool walkPointCheck)
+    {
+        Vector3 walkPoint = spawnPointHuman;
+        if (walkPointCheck)
+            walkPoint = newWalkoint;
+        if (gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins >= 40)
+        {
+            gameMecanec.GetComponent<gameMecanecSystem>().enemyCoins -= 40;
+            StartCoroutine(dealy(30));
+            Instantiate(canonPrefabe, spawnPointCanon, Quaternion.identity);
+            return true;
+        }
+        return false;
+    }
+
     IEnumerator dealy(int time)
     {
         yield return new WaitForSeconds(time);
