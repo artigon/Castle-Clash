@@ -7,6 +7,7 @@ public class UnitSelections : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> unitList = new List<GameObject>();
     public List<GameObject> SelectedList = new List<GameObject>();
+    public GameObject clickMarker;
 
 
     private static UnitSelections _instance;
@@ -61,6 +62,8 @@ public class UnitSelections : MonoBehaviour
            unit.transform.GetChild(0).gameObject.SetActive(false);
         }
         SelectedList.Clear();
+        //if (clickMarker.activeSelf)
+        //    clickMarker.SetActive(false);
     }
 
     public void Deselect(GameObject unitToDESLECT)
@@ -72,6 +75,14 @@ public class UnitSelections : MonoBehaviour
         foreach (var unit in SelectedList)
         {
             unit.GetComponent<npcMovmentMec>().getWalkPoint(v);
+        }
+    }
+
+    public void sendUnityToWalkPointOrder(Vector3 v)
+    {
+        foreach (var unit in SelectedList)
+        {
+            unit.GetComponent<npcMovmentMec>().walkToWalkPointOrder(v);
         }
     }
 

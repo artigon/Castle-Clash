@@ -46,6 +46,8 @@ public class npcMovmentMec : MonoBehaviour
     public bool enemyInSightRange, enemyInAttackRange;
     public bool enemyFortInSightRange, enemyFortInAttackRange;
 
+    public bool walkToPointOrder = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +85,12 @@ public class npcMovmentMec : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(walkToPointOrder)
+        {
+            if (Vector3.Distance(walkPoint, this.transform.position) <= 10f)
+                walkToPointOrder = false;
+        }
+
         if (attackAi && atttackAicheck)
             attackAiFunc();
 
@@ -121,17 +129,20 @@ public class npcMovmentMec : MonoBehaviour
                 enemyFortInAttackRange = false;
         }
 
-        //check for sight and attack range
-        if (!enemyInSightRange && !enemyInAttackRange)
-            walkingTowalkPoint();
-        if (enemyInSightRange && !enemyInAttackRange)
-            chaseEnemy();
-        if (enemyInSightRange && enemyInAttackRange)
-            attackEnemy();
-        //if (enemyFortInSightRange && !enemyFortInAttackRange)
-        //    goToFort();
-        if (enemyFortInSightRange && enemyFortInAttackRange)
-            attackFort();
+        if (!walkToPointOrder)
+        {
+            //check for sight and attack range
+            if (!enemyInSightRange && !enemyInAttackRange)
+                walkingTowalkPoint();
+            if (enemyInSightRange && !enemyInAttackRange)
+                chaseEnemy();
+            if (enemyInSightRange && enemyInAttackRange)
+                attackEnemy();
+            //if (enemyFortInSightRange && !enemyFortInAttackRange)
+            //    goToFort();
+            if (enemyFortInSightRange && enemyFortInAttackRange)
+                attackFort();
+        }
 
 
     }
@@ -163,6 +174,14 @@ public class npcMovmentMec : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         enemyInSightRange = true;
         enemy = bjc;
+    }
+
+    public void walkToWalkPointOrder(Vector3 v)
+    {
+        walkPoint = v;
+        walkToPointOrder = true;
+        agent.SetDestination(walkPoint);
+        StartCoroutine(changeState(1));
     }
 
     private void walkingTowalkPoint()

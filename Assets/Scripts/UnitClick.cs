@@ -56,14 +56,22 @@ public class UnitClick : MonoBehaviour
             }
         }
         else if (Input.GetMouseButtonDown(1))
-        //else if (Input.GetMouseButtonDown(0) &&
-        //    Input.GetKeyDown(KeyCode.Z))
         {
             RaycastHit hit;
             Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
                 unitSelections.sendUnitToWalkPoint(hit.point);
+            }
+            clickMarker.transform.position = hit.point;
+        }
+        else if (Input.GetMouseButtonDown(1) && Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            RaycastHit hit;
+            Ray ray = mycam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+            {
+                unitSelections.sendUnityToWalkPointOrder(hit.point);
             }
             clickMarker.transform.position = hit.point;
         }

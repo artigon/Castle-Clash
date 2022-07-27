@@ -7,10 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneMovementScript : MonoBehaviour
 {
+    public static bool firstMovment = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 1 && firstMovment)
+        {
+            firstMovment = false;
+            SceneManager.LoadScene(0);
+        }
     }
 
     // Update is called once per frame

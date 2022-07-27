@@ -9,7 +9,8 @@ public class compAI : MonoBehaviour
     void Start()
     {
 
-        //StartCoroutine(Ai());
+        StartCoroutine(Ai());
+        
     }
 
     // Update is called once per frame
