@@ -11,6 +11,7 @@ public class gameMecanecSystem : MonoBehaviour
     public bool playerWins = false, enemyWins = false,
         stopCoinLoop = false;
     public GameObject endGamePanel, winScreen, loseScreen, backToLobyBtn;
+    public static int numCoindAdd;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +44,8 @@ public class gameMecanecSystem : MonoBehaviour
     {
         if (!stopCoinLoop)
         {
-            playesCoins += 50;
-            enemyCoins += 50;
+            playesCoins += numCoindAdd;
+            enemyCoins += numCoindAdd;
             yield return new WaitForSeconds(5);
             StartCoroutine(addCoin());
         }
