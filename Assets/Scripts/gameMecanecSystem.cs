@@ -18,6 +18,21 @@ public class gameMecanecSystem : MonoBehaviour
         //playesCoins = 1000;//mabye change
         //enemyCoins = 100;
         startLoop();
+        if(numCoindAdd == 100)
+        {
+            playesCoins = 400;
+            enemyCoins = 400;
+        }
+        else if(numCoindAdd == 50)
+        {
+            playesCoins = 450;
+            enemyCoins = 450;
+        }
+        else if(numCoindAdd == 25)
+        {
+            playesCoins = 475;
+            enemyCoins = 475;
+        }
 
     }
 

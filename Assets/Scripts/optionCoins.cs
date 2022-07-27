@@ -17,9 +17,19 @@ public class optionCoins : MonoBehaviour
     {
         if (scrollbar.value == 0)
             gameMecanecSystem.numCoindAdd = 100;
-        else if (scrollbar.value == 1)
+        else if (scrollbar.value == 0.5)
             gameMecanecSystem.numCoindAdd = 50;
-        else if (scrollbar.value == 2)
+        else if (scrollbar.value == 1)
+            gameMecanecSystem.numCoindAdd = 25;
+    }
+
+    public void chengeCoins()
+    {
+        if (scrollbar.value == 0)
+            gameMecanecSystem.numCoindAdd = 100;
+        else if (scrollbar.value == 0.5)
+            gameMecanecSystem.numCoindAdd = 50;
+        else if (scrollbar.value == 1)
             gameMecanecSystem.numCoindAdd = 25;
     }
 }
