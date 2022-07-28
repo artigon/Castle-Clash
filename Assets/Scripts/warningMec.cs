@@ -7,10 +7,11 @@ public class warningMec : MonoBehaviour
 {
     public Text warningText;
     public GameObject warningObj;
+    private AudioSource warningSound;
     // Start is called before the first frame update
     void Start()
     {
-        
+        warningSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class warningMec : MonoBehaviour
 
     IEnumerator show(string tmp)
     {
+        warningSound.Play();
         warningObj.SetActive(true);
         warningText.text = tmp;
         yield return new WaitForSeconds(5);

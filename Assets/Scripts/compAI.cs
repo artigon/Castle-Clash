@@ -9,7 +9,7 @@ public class compAI : MonoBehaviour
     void Start()
     {
 
-        StartCoroutine(Ai());
+        //StartCoroutine(Ai());
         
     }
 
